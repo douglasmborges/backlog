@@ -5,9 +5,6 @@ dist/
 dist-metadata/
 target/
 .now/
-.claude/skills/
-.agents/skills
-.agents/cache/
 .env
 *.local
 pages/.widget-sandbox/
