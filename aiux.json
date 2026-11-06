@@ -1,0 +1,14 @@
+{
+  "name": "Backlog",
+  "basename": "backlog",
+  "landing": "/play",
+  "development": {
+    "token": ""
+  },
+  "build": {
+    "exclude": [
+      "**/*.test.js",
+      "**/test/**"
+    ]
+  }
+}

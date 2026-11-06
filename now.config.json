@@ -1,0 +1,15 @@
+{
+  "scope": "x_2302769_backlog",
+  "scopeId": "00f1c0e68f204298aa6955eef307979e",
+  "name": "Backlog",
+  "metadataDir": "src/plugin-xmls",
+  "appOutputDir": "dist-metadata/app",
+  "packageSourceCodeOnInstance": true,
+  "staticContent": {
+    "assets": {
+      "./public/**": {
+        "publicPath": "[$config.aiux.basename]/public"
+      }
+    }
+  }
+}
