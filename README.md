@@ -48,6 +48,8 @@ grep -rn "x_2302769" --exclude=pnpm-lock.yaml --exclude-dir=node_modules .
 
 This affects `now.config.json`, the page and component tag names, `pages/play/components/ranking-api.js` and `src/fluent/tables/score.now.ts`. The scope can be 18 characters at most. Do not change it after the first install, or the instance will end up with a duplicate app.
 
+`now.config.json` also holds a `scopeId`, the sys_id of the app record on the instance it was built on. It is not a secret, but it belongs to that instance: on yours, let the SDK create the app, or replace it with your own.
+
 ## Run locally
 
 Connect the SDK to your instance, then start the local LUX server. It runs the whole app on your machine and talks to the instance for login and for the leaderboard table.
@@ -81,10 +83,12 @@ Notes:
 
 ```bash
 pnpm build
-pnpm deploy
+pnpm run deploy
 ```
 
-`pnpm deploy` runs `now-sdk install`, which creates the app, its pages and the `x_2302769_backlog_score` table with two ACLs (any signed-in user can read and create scores). It prints a rollback URL: keep it, because opening it undoes the install.
+Use `pnpm run deploy`, not `pnpm deploy`: the second one is a built-in pnpm command that only works inside a workspace and fails here.
+
+`pnpm run deploy` runs `now-sdk install`, which creates the app, its pages and the `x_2302769_backlog_score` table with two ACLs (any signed-in user can read and create scores). It prints a rollback URL: keep it, because opening it undoes the install.
 
 **Known limitation:** the install can succeed and the pages can still fail to open at `https://<your-instance>/aiux/backlog/play`. On the PDI used to build this project (release Brazil), the LUX service was not active: files under `/sncapps/aix/assets/` returned 404 and `/aiux/health` did not answer, which also broke the app that ships with the instance. If you see "Core scripts failed to load!", use the local server above. Check `https://<your-instance>/aiux/health` before blaming the code.
 
